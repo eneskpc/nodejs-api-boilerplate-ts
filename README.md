@@ -29,7 +29,7 @@ $ cd your-app-name
 #### 2. Install dependencies
 
 ```
-$ npm i
+$ yarn
 ```
 
 ## Development
@@ -37,13 +37,19 @@ $ npm i
 ### Start dev server
 
 ```
-$ npm run dev
+$ yarn docker:dev
+```
+#### or
+
+```
+$ yarn dev
 ```
 
 Running the above commands results in
 
 - 🌏**API Server** running at `http://localhost:3000`
 - 🛢️**MongoDB** running at `mongodb://localhost:27017`
+- The above addresses are changeable into the docker compose files
 
 ## Environment
 
@@ -53,7 +59,7 @@ To edit environment variables, create a file with name `.env` and copy the conte
 | --------- | ------ | ----------------------------------- | ----------------------------------------- |
 | NODE_ENV  | string | `development`                       | API runtime environment. eg: `production` |
 | PORT      | number | `3000`                              | Port to run the API server on             |
-| MONGO_URL | string | `mongodb://localhost:27017/library` | URL for MongoDB                           |
+| MONGO_URL | string | `mongodb://mongodb:27017/library`   | URL for MongoDB                           |
 | SECRET    | string | `iAmSuperBoy`                       | JWT Token's Secret Key                    |
 
 ## Logging
