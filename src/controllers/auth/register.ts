@@ -7,16 +7,17 @@ export const addUserSchema = Joi.object().keys({
   email: Joi.string().required(),
   password: Joi.string().required(),
   firstName: Joi.string().required(),
-  lastName: Joi.string().required()
+  lastName: Joi.string().required(),
 });
 
 const registerWrapper: RequestHandler = async (req, res) => {
-  const {
-    email, password, firstName, lastName
-  } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   const user = new User({
-    email, firstName, lastName, createdOn: Date.now()
+    email,
+    firstName,
+    lastName,
+    createdOn: Date.now(),
   });
   user.password = user.encryptPassword(password);
 
@@ -25,4 +26,7 @@ const registerWrapper: RequestHandler = async (req, res) => {
   res.status(201).json(user.toJSON());
 };
 
-export const register = relogRequestHandler(registerWrapper, { validation: { body: addUserSchema }, skipJwtAuth: true });
+export const register = relogRequestHandler(registerWrapper, {
+  validation: { body: addUserSchema },
+  skipJwtAuth: true,
+});

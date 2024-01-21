@@ -8,12 +8,12 @@ describe('test mongoose User model', () => {
     const returnValue = {
       _id: '507f191e810c19729de860ea',
       name: 'name',
-      author: 'author'
+      author: 'author',
     };
 
     mockingoose(Book).toReturn(returnValue, 'findOne');
 
-    return Book.findById({ _id: '507f191e810c19729de860ea' }).then(doc => {
+    return Book.findById({ _id: '507f191e810c19729de860ea' }).then((doc) => {
       expect(JSON.parse(JSON.stringify(doc))).toMatchObject(returnValue);
     });
   });

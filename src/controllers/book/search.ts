@@ -17,7 +17,7 @@ const buildBookSeachQuery = (name: string, author: string) => {
 const searchWrapper: RequestHandler = async (req, res) => {
   const { name = undefined, author = undefined } = req.query;
 
-  const query = buildBookSeachQuery((name as string), (author as string));
+  const query = buildBookSeachQuery(name as string, author as string);
   const books = await Book.find(query);
   res.send({ books });
 };

@@ -8,7 +8,7 @@ module.exports = {
   // Stop running tests after `n` failures
   // bail: 0,
 
-  // Respect "browser" field in package.json when resolving modules
+  // Respect "browser" field in package.json when resolving modulesyarn prettier . --write
   // browser: false,
 
   // The directory where Jest should store its cached dependency information

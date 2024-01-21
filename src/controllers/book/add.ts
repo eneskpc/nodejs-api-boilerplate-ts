@@ -5,7 +5,7 @@ import { Book } from '../../models/Book';
 
 export const addBookSchema = Joi.object().keys({
   name: Joi.string().required(),
-  author: Joi.string().required()
+  author: Joi.string().required(),
 });
 
 const addWrapper: RequestHandler = async (req, res) => {
@@ -17,4 +17,6 @@ const addWrapper: RequestHandler = async (req, res) => {
   res.status(201).json(book.toJSON());
 };
 
-export const add = relogRequestHandler(addWrapper, { validation: { body: addBookSchema } });
+export const add = relogRequestHandler(addWrapper, {
+  validation: { body: addBookSchema },
+});

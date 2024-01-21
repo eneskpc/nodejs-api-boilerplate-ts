@@ -12,21 +12,21 @@ const loginWrapper: RequestHandler = async (req, res) => {
     const token = jwt.sign(
       {
         email: user.email,
-        userId: user._id
+        userId: user._id,
       },
       process.env.SECRET,
       {
-        expiresIn: '12h'
-      }
+        expiresIn: '12h',
+      },
     );
     return res.status(200).json({
       token,
-      uid: user._id
+      uid: user._id,
     });
   }
 
   return res.status(403).json({
-    message: 'Auth failed'
+    message: 'Auth failed',
   });
 };
 

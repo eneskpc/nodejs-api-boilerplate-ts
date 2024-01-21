@@ -1,6 +1,4 @@
-import {
-  Document, Model, Schema, model
-} from 'mongoose';
+import { Document, Model, Schema, model } from 'mongoose';
 import { hashSync, genSaltSync, compareSync } from 'bcrypt';
 
 export interface IUser extends Document {
@@ -20,7 +18,7 @@ export interface IUser extends Document {
   validPassword: (password: string) => boolean;
 }
 
-interface IUserModel extends Model<IUser> { }
+interface IUserModel extends Model<IUser> {}
 
 const schema = new Schema({
   email: { type: String, required: true, unique: true },
@@ -29,16 +27,17 @@ const schema = new Schema({
   lastName: { type: String, required: true },
   createdOn: {
     required: true,
-    type: Date
+    type: Date,
   },
   updatedOn: {
     required: true,
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-schema.methods.encryptPassword = (password: string) => hashSync(password, genSaltSync(10));
+schema.methods.encryptPassword = (password: string) =>
+  hashSync(password, genSaltSync(10));
 
 schema.methods.validPassword = function (password: string) {
   return compareSync(password, this.password);

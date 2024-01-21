@@ -11,16 +11,16 @@ describe('Error Handling Middleware', () => {
     next = jest.fn();
     request = new Request('/users?sort=desc', {
       headers: {
-        Accept: 'text/html'
-      }
+        Accept: 'text/html',
+      },
     });
     badRequest = new Request('/users?sort=desc', {
       headers: {
-        Accept: 'text/html'
-      }
+        Accept: 'text/html',
+      },
     });
     badRequest.setBody({
-      stringValue: 14321
+      stringValue: 14321,
     });
   });
 
@@ -31,7 +31,7 @@ describe('Error Handling Middleware', () => {
 
   test('API handles response behaviour when no error thrown', async () => {
     const res: any = {
-      send: jest.fn()
+      send: jest.fn(),
     };
 
     expect(next).toHaveBeenCalledTimes(0);
@@ -39,7 +39,9 @@ describe('Error Handling Middleware', () => {
       response.send();
     };
 
-    const wrappedRoute = relogRequestHandler(sampleRoute, { skipJwtAuth: true });
+    const wrappedRoute = relogRequestHandler(sampleRoute, {
+      skipJwtAuth: true,
+    });
     await wrappedRoute(request, res, next);
 
     expect(next).toHaveBeenCalledTimes(0);
@@ -52,7 +54,9 @@ describe('Error Handling Middleware', () => {
       throw err;
     };
 
-    const wrappedRoute = relogRequestHandler(sampleRoute, { skipJwtAuth: true });
+    const wrappedRoute = relogRequestHandler(sampleRoute, {
+      skipJwtAuth: true,
+    });
     await wrappedRoute(request, null, next);
 
     expect(next).toHaveBeenCalledTimes(1);
@@ -65,10 +69,13 @@ describe('Error Handling Middleware', () => {
     };
 
     const bodySchema = Joi.object().keys({
-      stringValue: Joi.string()
+      stringValue: Joi.string(),
     });
 
-    const wrappedRoute = relogRequestHandler(sampleRoute, { validation: { body: bodySchema }, skipJwtAuth: true });
+    const wrappedRoute = relogRequestHandler(sampleRoute, {
+      validation: { body: bodySchema },
+      skipJwtAuth: true,
+    });
     await wrappedRoute(badRequest, null, next);
 
     expect(next).toHaveBeenCalledTimes(1);
