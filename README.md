@@ -22,7 +22,7 @@ A few things to note in the project:
 #### 1. Clone this repo
 
 ```
-$ git clone https://github.com/kvvignesh/Node-TypeScript-Express-MongoDB.git your-app-name
+$ git clone https://github.com/eneskpc/nodejs-api-boilerplate-ts.git your-app-name
 $ cd your-app-name
 ```
 
